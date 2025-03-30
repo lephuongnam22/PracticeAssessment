@@ -1,0 +1,151 @@
+﻿openapi: 3.1.0
+info:
+  title: Task Management API
+  version: 1.0.0
+paths:
+  /tasks:
+    post:
+      summary: Create a new task
+      operationId: CreateTask
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskModel'
+      responses:
+        '201':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskModel'
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth  ffdfasdf: []
+
+
+  /tasks/{id}:
+    get:
+      summary: Get task details by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Task details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskModel'
+        '404':
+          description: Task not found
+
+    put:
+      summary: Update task details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskModel'
+      responses:
+        '200':
+          description: Task updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskModel'
+        '404':
+          description: Task not found
+
+    delete:
+      summary: Delete a task
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Task deleted successfully
+        '404':
+          description: Task not found
+
+
+  /tasks/user/{userId}:
+    get:
+      summary: Get tasks assigned to a user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tasks retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskModel'
+
+components:    
+  securitySchemes:
+    auth:
+      type: "http"
+      scheme: "bearer"
+      bearerFormat: "JWT"    
+  schemas:
+    TaskModel:
+      type: object
+      x-csharp-type: Models.TaskModel
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        userId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+security:
+  - app_id: []

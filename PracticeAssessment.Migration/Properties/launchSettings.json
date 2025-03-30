@@ -1,0 +1,12 @@
+﻿{
+  "profiles": {
+    "PracticeAssessment.Migration": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DATABASE_CONNECTION": "Data Source=localhost;Initial Catalog=Practice;User Id=sa;Password=123456;TrustServerCertificate=true;",
+        "VERSION": "v1.0",
+        "TIMEOUT": "3"
+      }
+    }
+  }
+}

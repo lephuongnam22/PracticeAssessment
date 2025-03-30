@@ -1,0 +1,27 @@
+{
+  "runtime": "Net80",
+  "defaultVariables": null,
+  "documentGenerator": {
+    "fromDocument": {
+      "url": "openapi.yaml",
+      "output": null
+    }
+  },
+  "codeGenerators": {
+    "openApiToCSharpController": {
+
+      "excludedTypeNames": [
+        "TaskModel"
+      ],
+      "className": "Task",
+      "namespace": "PracticeAssessment.Controllers",
+      "output": "Controllers/TaskController.cs",
+      "newLineBehavior": "Auto",
+      "dtoNamespace": "PracticeAssessment.Models",
+      "additionalNamespaceUsages": [
+        "PracticeAssessment.Models",
+        "Microsoft.AspNetCore.Authorization"
+      ]
+    }
+  }
+}

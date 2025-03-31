@@ -15,7 +15,7 @@
       ],
       "className": "Task",
       "namespace": "PracticeAssessment.Controllers",
-      "output": "Controllers/TaskController.cs",
+      "output": "Controllers/TaskControllerGenerate.cs",
       "newLineBehavior": "Auto",
       "dtoNamespace": "PracticeAssessment.Models",
       "additionalNamespaceUsages": [
